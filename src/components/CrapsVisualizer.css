@@ -1,0 +1,112 @@
+.bets-grid {
+  display: grid;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.bet-category {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+}
+
+.bet-category.good {
+  border-color: var(--emerald);
+  background: linear-gradient(135deg, var(--surface) 0%, rgba(5, 150, 105, 0.05) 100%);
+}
+
+.bet-category.medium {
+  border-color: var(--gold);
+  background: linear-gradient(135deg, var(--surface) 0%, rgba(245, 158, 11, 0.05) 100%);
+}
+
+.bet-category.bad {
+  border-color: var(--ruby);
+  background: linear-gradient(135deg, var(--surface) 0%, rgba(220, 38, 38, 0.05) 100%);
+}
+
+.category-title {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-family: var(--font-display);
+}
+
+.category-icon {
+  font-size: 1.5rem;
+}
+
+.bet-card {
+  background: var(--slate);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  transition: all 0.3s ease;
+}
+
+.bet-card:last-child {
+  margin-bottom: 0;
+}
+
+.bet-card:hover {
+  transform: translateX(4px);
+  border-color: var(--emerald);
+}
+
+.bet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xs);
+}
+
+.bet-name {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.bet-edge {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+}
+
+.bet-edge.good {
+  background: rgba(5, 150, 105, 0.2);
+  color: var(--emerald-light);
+}
+
+.bet-edge.medium {
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--gold-light);
+}
+
+.bet-edge.bad {
+  background: rgba(220, 38, 38, 0.2);
+  color: var(--ruby-light);
+}
+
+.bet-description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .bet-card {
+    padding: var(--spacing-sm);
+  }
+  
+  .bet-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+}

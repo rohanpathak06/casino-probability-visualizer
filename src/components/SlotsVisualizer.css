@@ -1,0 +1,114 @@
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.comparison-card {
+  background: var(--slate);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: var(--spacing-md);
+  transition: all 0.3s ease;
+}
+
+.comparison-card:hover {
+  border-color: var(--emerald);
+  transform: translateY(-2px);
+}
+
+.comparison-card.active {
+  border-color: var(--gold);
+  background: linear-gradient(135deg, var(--slate) 0%, rgba(245, 158, 11, 0.1) 100%);
+}
+
+.comparison-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.comparison-header h4 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+}
+
+.comparison-rtp {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--emerald-light);
+  padding: 0.25rem 0.75rem;
+  background: rgba(5, 150, 105, 0.1);
+  border-radius: 12px;
+}
+
+.comparison-bar {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  background: var(--background);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: var(--spacing-sm);
+  position: relative;
+}
+
+.comparison-fill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: width 0.5s ease;
+}
+
+.comparison-fill.player {
+  background: linear-gradient(90deg, var(--emerald) 0%, var(--emerald-light) 100%);
+}
+
+.comparison-fill.house {
+  background: linear-gradient(90deg, var(--ruby) 0%, var(--ruby-light) 100%);
+}
+
+.bar-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  padding: 0 0.5rem;
+}
+
+.comparison-description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.comparison-math {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  padding-top: var(--spacing-xs);
+  border-top: 1px solid var(--border);
+}
+
+.comparison-math strong {
+  color: var(--emerald-light);
+  font-weight: 600;
+}
+
+.comparison-math strong.loss {
+  color: var(--ruby-light);
+}
+
+@media (max-width: 768px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .bar-label {
+    font-size: 0.65rem;
+  }
+}

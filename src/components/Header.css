@@ -1,0 +1,138 @@
+.header {
+  padding: var(--spacing-lg) var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.logo-icon {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-light) 100%);
+  border-radius: 12px;
+  box-shadow: var(--shadow-glow);
+}
+
+.dice {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: dice-float 3s ease-in-out infinite;
+}
+
+.dice:first-child {
+  animation-delay: 0s;
+  transform: translate(-5px, -5px);
+}
+
+.dice:last-child {
+  animation-delay: 1.5s;
+  transform: translate(5px, 5px);
+}
+
+@keyframes dice-float {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(3px, -3px) rotate(5deg);
+  }
+  50% {
+    transform: translate(-3px, 3px) rotate(-5deg);
+  }
+  75% {
+    transform: translate(3px, 3px) rotate(3deg);
+  }
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.header-title {
+  font-size: 2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.header-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.header-stats {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.stat-chip {
+  padding: 0.5rem 1rem;
+  background: rgba(5, 150, 105, 0.1);
+  border: 1px solid var(--emerald);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--emerald-light);
+}
+
+.header-divider {
+  max-width: 1400px;
+  margin: var(--spacing-lg) auto 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--gold) 50%,
+    transparent 100%
+  );
+  opacity: 0.3;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+  
+  .header-title {
+    font-size: 1.5rem;
+  }
+  
+  .logo-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .header-content {
+    justify-content: center;
+    text-align: center;
+  }
+}

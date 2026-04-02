@@ -1,94 +1,86 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Header from './components/Header';
-import GameSelector from './components/GameSelector';
-import RouletteVisualizer from './components/RouletteVisualizer';
-import BlackjackVisualizer from './components/BlackjackVisualizer';
-import SlotsVisualizer from './components/SlotsVisualizer';
-import CrapsVisualizer from './components/CrapsVisualizer';
-import BankrollSimulator from './components/BankrollSimulator';
+import React, { useState, useEffect } from 'react';
+import HeaderNav from './components/HeaderNav';
+import HeroStatBand from './components/HeroStatBand';
+import GameSelectorCard from './components/GameSelectorCard';
+import ProbGaugeCard from './components/ProbGaugeCard';
+import DistributionChartCard from './components/DistributionChartCard';
+import SessionControlsCard from './components/SessionControlsCard';
+import StreakVisualizer from './components/StreakVisualizer';
+import OutcomeTableCard from './components/OutcomeTableCard';
+import ExpectedValueCard from './components/ExpectedValueCard';
+import HouseEdgeCard from './components/HouseEdgeCard';
+import { runSimulation } from './utils/simulation';
+
 import './App.css';
 
-function App() {
-  const [selectedGame, setSelectedGame] = useState('roulette');
+export default function App() {
+  const [sessionConfig, setSessionConfig] = useState({
+    gameId: 'bj',
+    rounds: 1000,
+    bankroll: 1000,
+    betSize: 10,
+    strategy: 'Optimal'
+  });
 
-  const renderGame = () => {
-    switch (selectedGame) {
-      case 'roulette':
-        return <RouletteVisualizer />;
-      case 'blackjack':
-        return <BlackjackVisualizer />;
-      case 'slots':
-        return <SlotsVisualizer />;
-      case 'craps':
-        return <CrapsVisualizer />;
-      case 'simulator':
-        return <BankrollSimulator />;
-      default:
-        return <RouletteVisualizer />;
-    }
+  const [simData, setSimData] = useState(null);
+
+  const triggerSimulation = (config) => {
+    setSessionConfig(config);
+    const data = runSimulation(config);
+    setSimData(data);
   };
 
-  return (
-    <div className="app">
-      <Header />
-      
-      <main className="main-content">
-        <GameSelector 
-          selectedGame={selectedGame} 
-          onSelectGame={setSelectedGame} 
-        />
-        
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={selectedGame}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            {renderGame()}
-          </motion.div>
-        </AnimatePresence>
-      </main>
+  useEffect(() => {
+    triggerSimulation(sessionConfig);
+  }, []);
 
-      <footer className="footer">
-        <div className="footer-content">
-          <div className="footer-section">
-            <h3 className="footer-title">Educational Purpose</h3>
-            <p className="footer-text">
-              This tool is designed to educate about probability and the mathematical principles 
-              behind casino games. Understanding these concepts can help you make informed decisions.
-            </p>
-          </div>
-          
-          <div className="footer-section">
-            <h3 className="footer-title">The Mathematics Never Lie</h3>
-            <p className="footer-text">
-              Every casino game has a built-in house edge. While you might win in the short term, 
-              the mathematical expectation always favors the house over time. This isn't opinion—it's 
-              mathematics.
-            </p>
-          </div>
-          
-          <div className="footer-section">
-            <h3 className="footer-title">Responsible Gaming</h3>
-            <p className="footer-text">
-              If you choose to gamble, set strict limits, never bet money you can't afford to lose, 
-              and recognize that the house always has a mathematical advantage. Gambling should only 
-              be for entertainment, never to make money.
-            </p>
-          </div>
-        </div>
+  if (!simData) return <div className="loading">Initializing Terminal...</div>;
+
+  return (
+    <div className="terminal-app">
+      <HeaderNav />
+      <main className="dashboard-content">
+        <HeroStatBand stats={simData.stats} />
         
-        <div className="footer-bottom">
-          <p className="footer-disclaimer">
-            🎓 Built for educational purposes • Understanding probability helps you make better decisions
-          </p>
+        <div className="bento-grid">
+          {/* Main Layout Rows using CSS Grid Area approach or standard columns */}
+          
+          {/* Left Column (Primary Viz) */}
+          <div className="bento-col main-biz">
+            <div className="row flex-gap">
+              <ProbGaugeCard winProb={simData.stats.winProb} />
+              <DistributionChartCard />
+            </div>
+            <StreakVisualizer 
+              streakData={simData.streakData.slice(0, 80)} // Show slice to fit nicely
+              pushCount={simData.pushCount}
+              maxWinStreak={simData.maxWinStreak}
+              maxLoseStreak={simData.maxLoseStreak}
+            />
+            <div className="row flex-gap align-start">
+              <OutcomeTableCard outcomes={simData.outcomes} />
+              <ExpectedValueCard expectedValue={simData.stats.expectedValue} />
+            </div>
+          </div>
+
+          {/* Right Column (Controls & Config) */}
+          <div className="bento-col side-viz">
+            <SessionControlsCard 
+              config={sessionConfig} 
+              onRun={triggerSimulation} 
+            />
+            <GameSelectorCard 
+              activeGameId={sessionConfig.gameId} 
+              onSelectGame={id => triggerSimulation({...sessionConfig, gameId: id})}
+            />
+            <HouseEdgeCard 
+              totalEdge={simData.stats.houseEdge} 
+              breakdown={simData.houseEdgeBreakdown} 
+            />
+          </div>
+
         </div>
-      </footer>
+      </main>
     </div>
   );
 }
-
-export default App;

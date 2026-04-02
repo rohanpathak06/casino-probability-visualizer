@@ -1,0 +1,56 @@
+.house-edge-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.edge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.edge-row {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  font-size: 12px;
+}
+
+.edge-bg-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0; /* grow right to left or left to right? usually left to right */
+  left: 0;
+  background: rgba(239, 68, 68, 0.08); /* faint red */
+  border-radius: 4px;
+  z-index: 0;
+}
+
+.edge-factor {
+  color: var(--text-secondary);
+}
+
+.edge-value {
+  color: var(--prob-lose);
+  font-weight: 700;
+}
+
+.edge-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-default);
+  padding-top: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.edge-total .total-val {
+  color: var(--prob-lose);
+}

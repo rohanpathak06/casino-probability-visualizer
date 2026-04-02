@@ -1,0 +1,61 @@
+.game-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.game-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+  padding: 0 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 150ms cubic-bezier(0.22, 1, 0.36, 1);
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.game-row:hover {
+  background: var(--bg-hover);
+}
+
+.game-row.active {
+  background: var(--bg-active);
+  border: 1px solid var(--border-accent);
+  border-left: 2px solid var(--accent); /* subtle extra accent */
+}
+
+.game-row.active .game-name {
+  color: var(--accent);
+}
+
+.game-name {
+  font-size: 13px;
+  font-weight: 400;
+  transition: color 150ms;
+}
+
+.game-rtp-badge {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.game-rtp-badge.badge-high {
+  background: var(--prob-win-dim);
+  color: var(--prob-win);
+}
+
+.game-rtp-badge.badge-mid {
+  background: rgba(255,255,255,0.06);
+  color: var(--text-secondary);
+}
+
+.game-rtp-badge.badge-low {
+  background: var(--prob-lose-dim);
+  color: var(--prob-lose);
+}

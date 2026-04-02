@@ -1,0 +1,55 @@
+.ev-card {
+  justify-content: flex-start;
+}
+
+.ev-card.border-neg {
+  border-left: 2px solid var(--prob-lose);
+}
+
+.ev-card.border-pos {
+  border-left: 2px solid var(--prob-win);
+}
+
+.ev-main {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.ev-neg { color: var(--prob-lose); }
+.ev-pos { color: var(--prob-win); }
+
+.ev-formula {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.ev-divider {
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
+  margin: 0 0 12px 0;
+}
+
+.ev-projections {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ev-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+
+.ev-proj-label {
+  color: var(--text-tertiary);
+}
+
+.ev-proj-val {
+  font-weight: 700;
+}

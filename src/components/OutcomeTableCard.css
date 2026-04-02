@@ -1,0 +1,78 @@
+.outcome-table-card {
+  /* full width visually or within grid column */
+}
+
+.table-container {
+  width: 100%;
+}
+
+.table-header {
+  display: flex;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 8px;
+  margin-bottom: 4px;
+}
+
+.col {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.col-outcome {
+  flex: 1.5;
+}
+
+.col-count {
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
+.table-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-row {
+  display: flex;
+  height: 40px;
+  font-size: 12px;
+  transition: background 100ms ease;
+}
+
+.table-row:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table-row:hover {
+  background: var(--bg-hover);
+}
+
+.row-win .col-outcome { color: var(--prob-win); }
+.row-lose .col-outcome { color: var(--prob-lose); }
+.row-neutral .col-outcome { color: var(--text-secondary); }
+
+.prob-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 4px; /* give bar some space */
+}
+
+.prob-bar {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.relative { position: relative; }
+.z-1 { z-index: 1; }

@@ -1,0 +1,90 @@
+.session-controls-card {
+  justify-content: space-between;
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.input-group, .strategy-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-group label, .strategy-group label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+}
+
+.input {
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 8px 12px;
+  width: 100%;
+  transition: border-color 150ms;
+}
+
+.input:focus {
+  border-color: var(--border-accent);
+  outline: none;
+}
+
+.pill-toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-inset);
+  padding: 4px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+}
+
+.pill-btn {
+  flex: 1;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: 4px;
+  padding: 6px 0;
+  font-size: 12px;
+  transition: all 150ms;
+}
+
+.pill-btn.active {
+  background: var(--accent);
+  color: var(--accent-text-on);
+  font-weight: 700;
+}
+
+.run-btn {
+  background: var(--accent);
+  color: var(--accent-text-on);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 6px;
+  padding: 16px;
+  width: 100%;
+  margin-top: 40px;
+  cursor: pointer;
+  transition: background 150ms, transform 100ms;
+}
+
+.run-btn:hover {
+  background: #f4fc44;
+}
+
+.run-btn:active {
+  transform: scale(0.98);
+}
